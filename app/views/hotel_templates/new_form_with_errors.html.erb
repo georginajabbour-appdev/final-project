@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+<% if @hotel.present? %>
+  <% if @hotel.errors.any? %>
+    <% @hotel.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new hotel
+</h1>
+
+
+<hr>
+
+<form action="/create_hotel" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @hotel.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @hotel.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="leg_id">
+      Leg
+    </label>
+
+    <input type="text" id="leg_id" name="leg_id" class="form-control" value="<%= @hotel.leg_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create hotel
+  </button>
+</form>
+
+<hr>
+
+<a href="/hotels">
+  Go back
+</a>

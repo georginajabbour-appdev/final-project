@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All trips
+    </h1>
+
+    <a href="/trips/new" class="btn btn-block btn-outline-secondary">
+      Add a new trip
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Manager
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @trips.each do |trip| %>
+      <tr>
+        <td>
+          <%= trip.id %>
+        </td>
+
+        <td>
+          <%= trip.name %>
+        </td>
+
+        <td>
+          <%= trip.manager_id %>
+        </td>
+
+        <td>
+          <%= trip.description %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(trip.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(trip.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/trips/<%= trip.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Leg #<%= @leg.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/legs" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/legs/<%= @leg.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit leg
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_leg/<%= @leg.id %>" class="btn btn-block btn-outline-secondary">
+          Delete leg
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Trip
+      </dt>
+      <dd>
+        <%= @leg.trip_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@leg.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@leg.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

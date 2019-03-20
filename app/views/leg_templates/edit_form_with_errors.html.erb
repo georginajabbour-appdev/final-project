@@ -1,0 +1,34 @@
+<% if @leg.errors.any? %>
+  <% @leg.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit leg #<%= @leg.id %>
+</h1>
+
+<hr>
+
+<form action="/update_leg/<%= @leg.id %>" method="post">
+
+  <div class="form-group">
+    <label for="trip_id">
+      Trip
+    </label>
+
+    <input type="text" id="trip_id" name="trip_id" class="form-control" value="<%= @leg.trip_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update leg
+  </button>
+</form>
+
+<hr>
+
+<a href="/legs">
+  Go back
+</a>

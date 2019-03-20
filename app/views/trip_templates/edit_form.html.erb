@@ -1,0 +1,42 @@
+<h1>
+  Edit trip #<%= @trip.id %>
+</h1>
+
+<hr>
+
+<form action="/update_trip/<%= @trip.id %>" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @trip.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="manager_id">
+      Manager
+    </label>
+
+    <input type="text" id="manager_id" name="manager_id" class="form-control" value="<%= @trip.manager_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @trip.description %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update trip
+  </button>
+</form>
+
+<hr>
+
+<a href="/trips">
+  Go back
+</a>

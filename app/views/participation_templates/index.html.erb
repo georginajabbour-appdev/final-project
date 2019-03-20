@@ -1,0 +1,74 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All participations
+    </h1>
+
+    <a href="/participations/new" class="btn btn-block btn-outline-secondary">
+      Add a new participation
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Trip
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @participations.each do |participation| %>
+      <tr>
+        <td>
+          <%= participation.id %>
+        </td>
+
+        <td>
+          <%= participation.user_id %>
+        </td>
+
+        <td>
+          <%= participation.trip_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(participation.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(participation.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/participations/<%= participation.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<h1>
+  Add a new roomate request
+</h1>
+
+
+<hr>
+
+<form action="/create_roomate_request" method="post">
+
+  <div class="form-group">
+    <label for="requestor_id">
+      Requestor
+    </label>
+
+    <input type="text" id="requestor_id" name="requestor_id" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="recipient_id">
+      Recipient
+    </label>
+
+    <input type="text" id="recipient_id" name="recipient_id" class="form-control">
+  </div>
+
+  <div class="form-check">
+    <input type="hidden" value="0" name="approved">
+    <input id="approved" class="form-check-input" name="approved" type="checkbox">
+    <label for="approved" class="form-check-label">
+      Approved
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="hotel_id">
+      Hotel
+    </label>
+
+    <input type="text" id="hotel_id" name="hotel_id" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create roomate request
+  </button>
+</form>
+
+<hr>
+
+<a href="/roomate_requests">
+  Go back
+</a>
