@@ -1,104 +1,67 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
   <div class="container">
     <a class="navbar-brand" href="/">
-      FinalProject
+      Modo: Travel
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+<% if current_user.blank? %>
 
     <div class="collapse navbar-collapse" id="collapsible-nav-links">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Resources
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a href="/legs" class="dropdown-item">
-              Legs
-            </a>
-            <a href="/roomate_requests" class="dropdown-item">
-              Roomate Requests
-            </a>
-            <a href="/hotels" class="dropdown-item">
-              Hotels
-            </a>
-            <a href="/participations" class="dropdown-item">
-              Participations
-            </a>
-            <a href="/trips" class="dropdown-item">
-              Trips
-            </a>
-            <a href="/batch_action_admin_trips" class="dropdown-item">
-              Batch Action Admin Trips
-            </a>
-            <a href="/admin_trips" class="dropdown-item">
-              Admin Trips
-            </a>
-            <a href="/batch_action_admin_roomate_requests" class="dropdown-item">
-              Batch Action Admin Roomate Requests
-            </a>
-            <a href="/admin_roomate_requests" class="dropdown-item">
-              Admin Roomate Requests
-            </a>
-            <a href="/batch_action_admin_hotels" class="dropdown-item">
-              Batch Action Admin Hotels
-            </a>
-            <a href="/admin_hotels" class="dropdown-item">
-              Admin Hotels
-            </a>
-            <a href="/batch_action_admin_legs" class="dropdown-item">
-              Batch Action Admin Legs
-            </a>
-            <a href="/admin_legs" class="dropdown-item">
-              Admin Legs
-            </a>
-            <a href="/batch_action_admin_participations" class="dropdown-item">
-              Batch Action Admin Participations
-            </a>
-            <a href="/admin_participations" class="dropdown-item">
-              Admin Participations
-            </a>
-            <a href="/batch_action_admin_admin_users" class="dropdown-item">
-              Batch Action Admin Admin Users
-            </a>
-            <a href="/admin_admin_users" class="dropdown-item">
-              Admin Admin Users
-            </a>
-            <a href="/admin_admin_comments" class="dropdown-item">
-              Admin Admin Comments
-            </a>
-          </div>
-        </li>
       </ul>
       <ul class="navbar-nav">
-        <% if current_user.blank? %>
-          <li class="nav-item">
-            <a href="/users/sign_in" class="nav-link">
-              Sign in
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="/users/sign_up" class="nav-link">
-              Sign up
-            </a>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <a href="/users/edit" class="nav-link">
-              Edit profile
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="/users/sign_out" data-method="delete" class="nav-link">
-              Sign out
-            </a>
-          </li>
-        <% end %>
+        <li class="nav-item">
+          <a href="/users/sign_in" class="nav-link">
+          Sign in
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/users/sign_up" class="nav-link">
+          Sign up
+          </a>
+        </li>
       </ul>
-    </div> <!-- .navbar-collapse -->
+    </div>
+  
+  <% else %> 
+  
+  <div class="collapse navbar-collapse" id="collapsible-nav-links">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/hotels">
+         <i class="fas fa-concierge-bell"></i>
+           <span class="hidden-sm">Your Trip Options</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/users">
+         <i class="fas fa-bed"></i>
+           <span class="hidden-sm">Your Itinerary</span></a>
+      </li>
+     
+      </ul>
+  
+      <ul class = "navbar-nav">         
+        <li class="nav-item">
+          <a href="/users/edit" class="nav-link">
+          <i class="fas fa-edit"></i>
+          <%= current_user.name %>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/users/sign_out" data-method="delete" class="nav-link">
+          <i class="fas fa-sign-out-alt"></i>
+              Sign out
+          </a>
+        </li>
+      </ul>
+    </div> 
   </div> <!-- .container -->
-</nav>
+<% end %>
+</nav>  <!-- .navbar-collapse -->
