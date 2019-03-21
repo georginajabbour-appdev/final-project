@@ -1,3 +1,5 @@
+<% if current_user.manager? %>
+
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
@@ -57,3 +59,63 @@
     </table>
   </div>
 </div>
+
+<% else %>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Your Trips
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Name
+        </th>
+
+
+        <th>
+          Description
+        </th>
+
+
+        <th>
+        </th>
+        
+      </tr>
+      
+      <% Participation.where(user_id: current_user.id).each do |trip| %>
+      <tr>
+
+        <td>
+          <%= Trip.find(trip.trip_id).name %>
+        </td>
+
+
+        <td>
+          <%= Trip.find(trip.trip_id).description %>
+        </td>
+
+
+
+        <td>
+          <a href="/trips/<%= trip.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<% end %>

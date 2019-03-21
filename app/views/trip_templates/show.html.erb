@@ -1,3 +1,5 @@
+<% if current_user.manager? %>
+
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
@@ -69,4 +71,61 @@
     
   </div>
 </div>
+
+<% else %>
+
+<div class="row">
+  <div class="col">
+    <h1>
+    Choose your hotels for <%= @trip.name %>
+    </h1>
+
+    <% Leg.where(trip_id: @trip.id).each do |leg| %> 
+      <div class="card">
+        
+        <div class="card-header">
+          <h5 class="card-title"><%= Leg.find(leg.id).name %></h5>
+        </div>
+        
+        <div class="card-body">
+          
+          <h5 class="card-title">Pending Roomate Requests</h5>
+          
+          <p class="card-text">
+            None
+          </p>
+          
+          <form action="/create_roomate_request" method="post">
+            <div class="form-group">
+            
+              <input type="hidden" name="requestor_id" value=<%= current_user.id %>>
+              <input type="hidden" name="approved" value="0">
+              
+              <label for="hotel_id">
+              Hotel
+              </label>
+              
+            
+              <%= select_tag("hotel_id", options_from_collection_for_select(Hotel.where(leg_id: leg.id).all, :id, :name), :class => "form-control") %>
+              
+
+              <label for="recipient_id">
+              Roomate
+              </label>
+
+              <%= select_tag("recipient_id", options_from_collection_for_select(Participation.where(trip_id: leg.trip).all, :id, :name), :class => "form-control") %>
+
+              
+            </div>
+            <button class="btn btn-block btn-outline-secondary">
+            Send Roomate Request
+            </button>   
+          </form>
+        </div>
+      </div>  
+    <% end %>
+  </div>
+</div>
+
+<% end %>
 

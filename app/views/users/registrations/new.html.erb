@@ -134,7 +134,7 @@
           <div class="form-group">
             <% manager_was_invalid = resource.errors.include?(:manager) %>
 
-            <% manager_class = "form-control" %>
+              <% manager_class = "form-control" %>
 
             <% if was_validated %>
               <% if manager_was_invalid %>
@@ -144,9 +144,7 @@
               <% end %>
             <% end %>
 
-            <%= f.label :manager %>
-
-            <%= f.check_box :manager, class: "#{manager_class} col-sm-2" %>
+            
 
             <% if manager_was_invalid %>
               <% resource.errors.full_messages_for(:manager).each do |message| %>
@@ -157,6 +155,7 @@
             <% end %>
           </div>
           <!-- Devise Input for manager end -->
+      
           <%= f.button class: "btn btn-outline-primary btn-block" %>
 
           <hr>
