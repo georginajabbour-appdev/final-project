@@ -1,3 +1,6 @@
+<!-- This is the view for the manager --> 
+
+
 <% if current_user.manager? %>
 
 <div class="row mb-3">
@@ -72,46 +75,56 @@
   </div>
 </div>
 
+<!-- This is the view for the traveler --> 
+
 <% else %>
 
 <div class="row">
   <div class="col">
     
-    <h1>
-    Choose your hotels for <%= @trip.name %>
-    </h1>
     
-    <div class="card">
-    <h5 class="card-title"> Received Roomate Requests </h5>
+<!-- This is where roomate requests appear --> 
     
     <% if RoomateRequest.where(recipient_id: current_user.id).blank? %>
-    You don't have any pending roomate requests.
-    <% else %>
-    
-     <% RoomateResquest.where(hotel_id: @trip.hotel_id && recipient_id: current_user.id).each do |request| %>
-    
-    Please accept or decline the following roomate requests:
-    
-      
-      <h5><%= User.find(request.requestor_id).name %></h5> wants to be your roomate.
-      
-      At
-      
-      <%= Hotel.find(request.hotel_id).name %>
-      
-      Do you Accept?
-      
-      <div class="form-check">
-      <input type="hidden" value="0" name="approved">
-      <input id="approved" class="form-check-input" name="approved" type="checkbox" value="1" <%= "checked" if @roomate_request.approved %>>
-      <label for="approved" class="form-check-label">
-      Approved
-      </label>
-      </div>
-
-    <% end %>
+    <div class="jumbotron">
+    <h1 class="display-4">Choose your hotels for <%= @trip.name %></h1>
+    <p class="lead">Below, there is a list of the hotels for each leg of the trip. Please choose the hotel you would like to stay in and the person you will room with. </p>
     </div>
     
+    <% else %>
+    
+    <div class="jumbotron">
+    <h1 class="display-4">Choose your hotels for <%= @trip.name %></h1>
+    <p class="lead">So popular! You already have the following roomate requests:</p>
+    <hr class="my-4">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Requested by</th>
+      <th scope="col">At</th>
+      <th scope="col">Approve</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Leg.where(trip_id: @trip.id).each do |leg|%>
+    <% Hotel.where(leg_id: leg.id).each do |hotel| %>
+    <% RoomateRequest.where(hotel_id: hotel.id, recipient_id: current_user.id).each do |request| %>
+
+    <tr>
+      <td><%= User.find(request.requestor_id).name %></td>
+      <td><%= Hotel.find(request.hotel_id).name %></td>
+      <td>FALTA</td>
+    </tr>
+          <% end %>
+          <% end %>
+          <% end %>
+  </tbody>
+</table>
+<% end %>
+</div>
+
+
+<!-- This is where Hotel and Roomate Selection Happens --> 
     
     <% Leg.where(trip_id: @trip.id).each do |leg| %>
       <div class="card">
@@ -119,7 +132,6 @@
           <h5 class="card-title"><%= Leg.find(leg.id).name %></h5>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Pending Roomate Requests</h5>
           <p class="card-text">
           </p>
           <form action="/create_roomate_request" method="post">
