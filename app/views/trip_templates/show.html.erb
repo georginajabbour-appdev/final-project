@@ -113,7 +113,7 @@
               Roomate
               </label>
 
-              <%= select_tag("recipient_id", options_from_collection_for_select(Participation.where(trip_id: leg.trip).all, :id, :name), :class => "form-control") %>
+              <%= select_tag("recipient_id", options_from_collection_for_select(User.all, :id, :name), :class => "form-control") %>
 
               
             </div>
