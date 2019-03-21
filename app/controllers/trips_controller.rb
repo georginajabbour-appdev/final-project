@@ -27,7 +27,7 @@ class TripsController < ApplicationController
     if @trip.valid?
       @trip.save
 
-      redirect_back(:fallback_location => "/trips", :notice => "Trip created successfully.")
+      redirect_to("/trips", :notice => "Trip created successfully.")
     else
       render("trip_templates/new_form_with_errors.html.erb")
     end

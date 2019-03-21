@@ -22,20 +22,18 @@
     <input type="text" id="name" name="name" class="form-control" value="<%= @hotel.name %>">
   </div>
 
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
 
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @hotel.user_id %>">
-  </div>
+    <input type="hidden" id="user_id" name="user_id"  value="<%= @hotel.user_id %>">
+
 
   <div class="form-group">
     <label for="leg_id">
       Leg
     </label>
 
-    <input type="text" id="leg_id" name="leg_id" class="form-control" value="<%= @hotel.leg_id %>">
+    <%= select_tag("leg_id", options_from_collection_for_select(Leg.all, :id, :name, @hotel.try(:leg_id)), :class => "form-control") %>
+    or <a href="/legs/new">add a new leg</a> first
+    
   </div>
 
   <button class="btn btn-block btn-outline-secondary">

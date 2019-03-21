@@ -12,7 +12,8 @@
       User
     </label>
 
-    <input type="text" id="user_id" name="user_id" class="form-control">
+    <%= select_tag("user_id", options_from_collection_for_select(User.all, :id, :name, @participation.try(:user_id)), :class => "form-control") %>
+
   </div>
 
   <div class="form-group">
@@ -20,7 +21,9 @@
       Trip
     </label>
 
-    <input type="text" id="trip_id" name="trip_id" class="form-control">
+
+    <%= select_tag("trip_id", options_from_collection_for_select(Trip.all, :id, :name, @participation.try(:trip_id)), :class => "form-control") %>
+
   </div>
 
   <button class="btn btn-block btn-outline-secondary">

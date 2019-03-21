@@ -1,8 +1,24 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Leg #<%= @leg.id %> details
+      <%= @leg.name %>
     </h1>
+    
+    <dl>
+      <dt>
+      Trip
+      </dt>
+      <dd>
+      <%= Trip.find(@leg.trip_id).name %>
+      </dd>
+    
+      <dt>
+      Created at
+      </dt>
+      <dd>
+      <%= time_ago_in_words(@leg.created_at) %> ago
+      </dd>
+    </dl>
 
     <div class="row mb-3">
       <div class="col">
@@ -24,28 +40,7 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Trip
-      </dt>
-      <dd>
-        <%= @leg.trip_id %>
-      </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@leg.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@leg.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
 

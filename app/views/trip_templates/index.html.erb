@@ -17,29 +17,17 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
+
 
         <th>
           Name
         </th>
 
-        <th>
-          Manager
-        </th>
 
         <th>
           Description
         </th>
 
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
@@ -47,28 +35,17 @@
 
       <% @trips.each do |trip| %>
       <tr>
-        <td>
-          <%= trip.id %>
-        </td>
 
         <td>
           <%= trip.name %>
         </td>
 
-        <td>
-          <%= trip.manager_id %>
-        </td>
 
         <td>
           <%= trip.description %>
         </td>
 
-        <td>
-          <%= time_ago_in_words(trip.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(trip.updated_at) %> ago
-        </td>
+
 
         <td>
           <a href="/trips/<%= trip.id %>">

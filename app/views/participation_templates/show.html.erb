@@ -1,10 +1,11 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Participation #<%= @participation.id %> details
+      <%= User.find(@participation.user_id).name %>
     </h1>
+    
 
-    <div class="row mb-3">
+<div class="row mb-3">
       <div class="col">
         <a href="/participations" class="btn btn-block btn-outline-secondary">
           Go back
@@ -24,35 +25,8 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @participation.user_id %>
-      </dd>
-
-      <dt>
-        Trip
-      </dt>
-      <dd>
-        <%= @participation.trip_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@participation.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@participation.updated_at) %> ago
-      </dd>
-    </dl>
+</div>
+    
   </div>
 </div>
 

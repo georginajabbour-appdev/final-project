@@ -21,6 +21,7 @@ class LegsController < ApplicationController
     @leg = Leg.new
 
     @leg.trip_id = params.fetch("trip_id")
+    @leg.name = params.fetch("name")
 
     if @leg.valid?
       @leg.save
@@ -41,6 +42,7 @@ class LegsController < ApplicationController
     @leg = Leg.find(params.fetch("id_to_modify"))
 
     @leg.trip_id = params.fetch("trip_id")
+    @leg.name = params.fetch("name")
 
     if @leg.valid?
       @leg.save

@@ -1,9 +1,25 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Hotel #<%= @hotel.id %> details
+      <%= @hotel.name %>
     </h1>
 
+    <dl>
+
+      <dt>
+        Leg
+      </dt>
+      <dd>
+        <%= Leg.find(@hotel.leg_id).name %>
+      </dd>
+      
+      <dt>
+        Trip
+      </dt>
+      <dd>
+        <%= Trip.find(Leg.find(@hotel.leg_id).trip_id).name %>
+      </dd>
+    
     <div class="row mb-3">
       <div class="col">
         <a href="/hotels" class="btn btn-block btn-outline-secondary">
@@ -23,43 +39,6 @@
         </a>
       </div>
     </div>
-
-    <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @hotel.name %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @hotel.user_id %>
-      </dd>
-
-      <dt>
-        Leg
-      </dt>
-      <dd>
-        <%= @hotel.leg_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@hotel.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@hotel.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
 

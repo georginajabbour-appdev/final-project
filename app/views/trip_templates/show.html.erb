@@ -1,9 +1,50 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Trip #<%= @trip.id %> details
+      <%= @trip.name %>
     </h1>
+    
 
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @trip.name %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @trip.description %>
+      </dd>
+    </dl>
+    
+    <h4 class="pt-4">
+      Legs
+    </h4>
+    <div><a href="/legs/new">Add a new leg</a><div>
+
+      <% Leg.where(trip_id: @trip.id).each do |leg| %>
+      <ul>
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <%= Leg.find(leg.id).name %>
+            <a href="/hotels/new">Add a new hotel</a>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <% Hotel.where(leg_id: leg.id).each do |hotel| %>
+              <%= Hotel.find(hotel.id).name %></a>
+              <% end %>
+          </li>
+        </ul>
+      </div>
+      </ul>
+      <% end %>
+
+    
     <div class="row mb-3">
       <div class="col">
         <a href="/trips" class="btn btn-block btn-outline-secondary">
@@ -24,42 +65,8 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @trip.name %>
-      </dd>
-
-      <dt>
-        Manager
-      </dt>
-      <dd>
-        <%= @trip.manager_id %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @trip.description %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@trip.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@trip.updated_at) %> ago
-      </dd>
-    </dl>
+    
+    
   </div>
 </div>
 

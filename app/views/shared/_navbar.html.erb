@@ -7,7 +7,8 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
+
 <% if current_user.blank? %>
 
     <div class="collapse navbar-collapse" id="collapsible-nav-links">
@@ -30,8 +31,19 @@
   
   <% else %> 
   
+  
+  
   <div class="collapse navbar-collapse" id="collapsible-nav-links">
     <ul class="navbar-nav mr-auto">
+      
+      <% if current_user.manager? %>
+      <li class="nav-item">
+        <a class="nav-link" href="/trips">
+         <i class="fas fa-toolbox"></i>
+           <span class="hidden-sm"> Trip Settings </span></a>
+      </li>
+      <% else %>
+    
       <li class="nav-item">
         <a class="nav-link" href="/hotels">
          <i class="fas fa-concierge-bell"></i>
@@ -43,6 +55,8 @@
          <i class="fas fa-bed"></i>
            <span class="hidden-sm">Your Itinerary</span></a>
       </li>
+      
+      <% end %>
      
       </ul>
   

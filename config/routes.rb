@@ -73,6 +73,16 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_participation/:id_to_remove", { :controller => "participations", :action => "destroy_row" })
 
+#------------------------------
+
+  # Routes for the Trip setup:
+
+  # CREATE
+  get("/trip_setup/new", { :controller => "trip_setup", :action => "new_form" })
+  post("/create_trip_setup", { :controller => "trip_setup", :action => "create_row" })
+
+
+
   #------------------------------
 
   # Routes for the Trip resource:

@@ -17,16 +17,9 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Name
-        </th>
-
-        <th>
-          User
         </th>
 
         <th>
@@ -34,11 +27,7 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
+          Trip
         </th>
 
         <th>
@@ -47,28 +36,19 @@
 
       <% @hotels.each do |hotel| %>
       <tr>
-        <td>
-          <%= hotel.id %>
-        </td>
 
         <td>
           <%= hotel.name %>
         </td>
 
         <td>
-          <%= hotel.user_id %>
+          <%= Leg.find(hotel.leg_id).name %>
         </td>
 
         <td>
-          <%= hotel.leg_id %>
+          <%= Trip.find(hotel.leg_id).name %>
         </td>
 
-        <td>
-          <%= time_ago_in_words(hotel.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(hotel.updated_at) %> ago
-        </td>
 
         <td>
           <a href="/hotels/<%= hotel.id %>">

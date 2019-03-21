@@ -17,9 +17,7 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
+
 
         <th>
           User
@@ -29,13 +27,6 @@
           Trip
         </th>
 
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
@@ -43,24 +34,16 @@
 
       <% @participations.each do |participation| %>
       <tr>
+  
+
         <td>
-          <%= participation.id %>
+          <%= User.find(participation.user_id).name %>
         </td>
 
         <td>
-          <%= participation.user_id %>
+          <%= Trip.find(participation.trip_id).name %>
         </td>
 
-        <td>
-          <%= participation.trip_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(participation.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(participation.updated_at) %> ago
-        </td>
 
         <td>
           <a href="/participations/<%= participation.id %>">
