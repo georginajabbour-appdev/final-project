@@ -17,9 +17,6 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Requestor
@@ -38,29 +35,30 @@
         </th>
 
         <th>
-          Created at
+          Created
         </th>
 
         <th>
-          Updated at
+          Updated
         </th>
 
+
+        <th>
+        </th>
+        
         <th>
         </th>
       </tr>
 
       <% @roomate_requests.each do |roomate_request| %>
       <tr>
+
         <td>
-          <%= roomate_request.id %>
+          <%= User.find(roomate_request.requestor_id).name %>
         </td>
 
         <td>
-          <%= roomate_request.requestor_id %>
-        </td>
-
-        <td>
-          <%= roomate_request.recipient_id %>
+          <%= User.find(roomate_request.recipient_id).name %>
         </td>
 
         <td>
@@ -68,7 +66,7 @@
         </td>
 
         <td>
-          <%= roomate_request.hotel_id %>
+          <%= Hotel.find(roomate_request.hotel_id).name %>
         </td>
 
         <td>
@@ -79,10 +77,17 @@
         </td>
 
         <td>
-          <a href="/roomate_requests/<%= roomate_request.id %>">
-            Show details
+          <a href="/roomate_requests/<%= roomate_request.id %>/edit" class="btn btn-primary">
+          Edit
           </a>
         </td>
+
+        <td>
+          <a href="/delete_roomate_requests/<%= roomate_request.id %>" class="btn btn-danger">
+          Delete
+          </a>
+        </td>
+        
       </tr>
       <% end %>
     </table>

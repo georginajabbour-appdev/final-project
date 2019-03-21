@@ -6,21 +6,19 @@
 
 <form action="/update_roomate_request/<%= @roomate_request.id %>" method="post">
 
-  <div class="form-group">
+    <div class="form-group">
     <label for="requestor_id">
       Requestor
     </label>
+    <%= select_tag("requestor_id", options_from_collection_for_select(User.all, :id, :name, @roomate_request.try(:requestor_id)), :class => "form-control") %>
+    </div>
 
-    <input type="text" id="requestor_id" name="requestor_id" class="form-control" value="<%= @roomate_request.requestor_id %>">
-  </div>
-
-  <div class="form-group">
+    <div class="form-group">
     <label for="recipient_id">
       Recipient
     </label>
-
-    <input type="text" id="recipient_id" name="recipient_id" class="form-control" value="<%= @roomate_request.recipient_id %>">
-  </div>
+    <%= select_tag("recipient_id", options_from_collection_for_select(User.all, :id, :name, @roomate_request.try(:recipient_id)), :class => "form-control") %>
+    </div>
 
   <div class="form-check">
     <input type="hidden" value="0" name="approved">
@@ -34,9 +32,9 @@
     <label for="hotel_id">
       Hotel
     </label>
-
-    <input type="text" id="hotel_id" name="hotel_id" class="form-control" value="<%= @roomate_request.hotel_id %>">
-  </div>
+    
+    <%= select_tag("hotel_id", options_from_collection_for_select(Hotel.all, :id, :name, @roomate_request.try(:hotel_id)), :class => "form-control") %>
+    </div>
 
   <button class="btn btn-block btn-outline-secondary">
     Update roomate request

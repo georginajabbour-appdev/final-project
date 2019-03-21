@@ -18,6 +18,15 @@ validates :requestor_id, uniqueness: { scope: :hotel_id,
 message: "User can only invite one person to room per hotel" 
 }
 
+validate :recipient_id_cannot_be_requestor_id
+    
+  def recipient_id_cannot_be_requestor_id
+    if recipient_id == requestor_id
+      errors.add(:recipient_id, "cannot be requester")
+    end
+  end
+
+
     
 belongs_to :requestor, :class_name => "User"
 belongs_to :recipient, :class_name => "User"
